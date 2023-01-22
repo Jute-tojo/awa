@@ -1,0 +1,14 @@
+.card {
+    border-top: solid 5px #198754! important;
+}
+
+@media (min-width: 535px) {
+    .width{
+        width: 50%!important;
+    }    
+}
+@media (max-width: 535px) {
+    .width{
+        width: 100%!important;
+    }    
+}

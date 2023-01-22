@@ -1,0 +1,43 @@
+{% extends "base.html.twig" %}
+
+{% block subtitle %}Liste des utilisateurs{% endblock %}
+{% block breadcrumb %}
+    <li class="breadcrumb-item active" aria-current="page">Liste</li>
+    <li class="breadcrumb-item"><a href="{{ path('user.create') }}">Créer</a></li>
+{% endblock %}
+
+{% block body %}
+<div class="table-responsive">
+    <table class="table table-striped table-sm">
+      <thead>
+        <tr>          
+          <th scope="col">Nom</th>
+          <th scope="col">Prénom</th>
+          <th scope="col">Téléphone</th>
+          <th scope="col">Adresse</th>
+          <th scope="col">Email</th>
+          <th scope="col">#</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in users %}
+         <tr>
+            <td>{{ item.nom }}</td>
+            <td>{{ item.prenom }}</td>
+            <td>{{ item.telephone }}</td>
+            <td>{{ item.adresse }}</td>
+            <td>{{ item.email }}</td>
+            <td style="width: 100px;">
+              <a href="#" class="btn btn-sm btn-primary">
+                  M
+              </a>
+              <a href="#" class="btn btn-sm btn-danger">
+                  D
+              </a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

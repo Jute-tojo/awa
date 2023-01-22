@@ -1,0 +1,12 @@
+{% extends "base.html.twig" %}
+
+{% block subtitle %}Création d'utilisateur{% endblock %}
+{% block breadcrumb %}
+    <li class="breadcrumb-item active" aria-current="page"><a href="{{ path('user.index') }}">Liste</a></li>
+    <li class="breadcrumb-item">Créer</li>
+{% endblock %}
+
+{% form_theme formUser 'bootstrap_3_layout.html.twig' %}
+{% block body %}
+{{ form(formUser) }}
+{% endblock %}

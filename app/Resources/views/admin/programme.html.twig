@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block subtitle %}Programme{% endblock %}
+{% block breadcrumb %}
+    <li class="breadcrumb-item active" aria-current="page">Création</li>
+    <li class="breadcrumb-item"><a href="#">Liste</a></li>
+{% endblock %}
+
+{% block body %}
+<div class="mb-3">
+    <form action="{{ path('programme') }}" method="post" class="card shadow p-3">
+        <div class="form-group">
+            <label for="titre">Titre du programme</label>
+            <input type="text" name="titre" id="titre" class="form-control">
+        </div>
+        <button class="btn btn-sm mt-3 btn-success" type="submit">Enregistrer</button>
+    </form>
+        <hr>
+    <div class="card shadow p-3">
+        <form action="{{ path('horaire') }}" method="post">
+            <div class="form-group">
+                <label for="programme">Programme</label>
+                <select class="form-select" name="programme" id="programme">
+                    {% for pro in programmes %}
+                    <option value="{{ pro.id }}">{{ pro.titre }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="jour">Jour</label>
+                <select class="form-select" name="jour" id="jour">
+                    <option selected value="Lundi">Lundi</option>
+                    <option value="Mardi">Mardi</option>
+                    <option value="Mercredi">Mercredi</option>
+                    <option value="Jeudi">Jeudi</option>
+                    <option value="Vendredi">Vendredi</option>
+                    <option value="Samedi">Samedi</option>
+                    <option value="Dimanche">Dimanche</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="heure_debut">Heure de début du travail</label>
+                <input type="time" name="heure_debut" id="heure_debut" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="heure_fin">Heure de fin du travail</label>
+                <input type="time" name="heure_fin" id="heure_fin" class="form-control">
+            </div>
+            <div>
+                <button class="btn btn-sm mt-3 btn-primary w-100" type="submit">Ajouter</button>
+            </div>
+        </form>
+        <div class="table-responsive">
+            <table class="table table-striped table-sm">
+            <thead>
+                <tr>          
+                <th scope="col">Jour</th>
+                <th scope="col">Heure d'arrivée</th>
+                <th scope="col">Heure de sortie</th>
+                <th scope="col">#</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in horaires %}
+                    <tr>
+                        <td>{{ item.jour }}</td>
+                        <td>{{ item.getHeureDebut() }}</td>
+                        <td>{{ item.getHeureFin() }}</td>
+                        <td style="width: 100px;">
+                            <a href="#" class="btn btn-sm btn-primary">
+                                M
+                            </a>
+                            <a href="#" class="btn btn-sm btn-danger">
+                                D
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
